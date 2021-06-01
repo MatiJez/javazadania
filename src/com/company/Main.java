@@ -21,12 +21,13 @@ public class Main {
         me.pet.takeForAWalk();
         System.out.println(me.pet);
 
-        Car car = new Car("Maluch", "Fiat");
-        car.color = "red";
-        me.car = car;
-        System.out.println(me.car);
+        Car car = new Car("Maluch", "Fiat", "red", 5000.00);
 
-        me.setSalary(3000.0);
+
+        me.setSalary(13000.0);
         me.getSalary();
+
+        me.setCar(car);
+        System.out.println(me.getCar());
     }
 }
