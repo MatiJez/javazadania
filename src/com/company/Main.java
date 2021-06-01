@@ -20,5 +20,10 @@ public class Main {
         me.pet.takeForAWalk();
         me.pet.takeForAWalk();
         System.out.println(me.pet);
+
+        Car car = new Car("Maluch", "Fiat");
+        car.color = "red";
+        me.car = car;
+        System.out.println(me.car);
     }
 }
