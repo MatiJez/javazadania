@@ -2,7 +2,7 @@ package com.company;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Human me = new Human();
         me.firstName = "Mateusz";
@@ -25,5 +25,8 @@ public class Main {
         car.color = "red";
         me.car = car;
         System.out.println(me.car);
+
+        me.setSalary(3000.0);
+        me.getSalary();
     }
 }
