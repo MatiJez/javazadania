@@ -1,6 +1,9 @@
 package com.company;
+import com.company.creatures.Animal;
 import com.company.devices.Car;
 import com.company.devices.Phone;
+import com.company.creatures.FarmAnimal;
+import com.company.creatures.Pet;
 
 import java.time.LocalDate;
 
@@ -11,11 +14,9 @@ public class Main {
         Human me = new Human();
         me.firstName = "Mateusz";
         me.lastName = "Jezierski";
-        me.pet = new Animal("Canis",15.0, "Grubas");
-        System.out.println(me.pet);
-        me.pet.feed();
-        System.out.println(me.pet);
-        me.pet.takeForAWalk();
+        me.pet = new Pet("Canis","Grubas", 15.0);
+        Animal cat = new Pet("Canis","Ulaniec", 25.0);
+        Animal chicken = new FarmAnimal("Kurczakowy","KFC", 54.00);
 
         System.out.println(me.pet);
 
@@ -25,64 +26,19 @@ public class Main {
 
         Phone huawei = new Phone("Huawei", "P10 Lite", LocalDate.of(2015, 2, 5),6.3, "Android");
 
-        me.setSalary(13000.0);
-        me.getSalary();
+        cat.feed();
+        cat.feed();
+        chicken.feed(3.0);
+        cat.feed(1.0);
+        System.out.println(cat);
+        System.out.println(chicken);
+        cat.takeForAWalk();
+        chicken.takeForAWalk();
 
-        me.setCar(car);
-        System.out.println(me.getCar());
-
-        System.out.println(car.equals(bmw));
-        System.out.println(bmw.equals(bmw2));
-
-        System.out.println(bmw);
-        System.out.println(bmw2);
-        System.out.println(huawei);
-
-        bmw.turnOn();
-        System.out.println(bmw);
+        System.out.println(cat);
+        System.out.println(chicken);
+        System.out.println(chicken.beEaten());
 
 
-
-        // Zad 8
-        Animal cat = new Animal("Felis catus", 5.0, "Agata");
-        Human seller = new Human();
-        seller.firstName = "Karol";
-        seller.lastName = "Sprzedaje";
-        Human buyer = new Human();
-        buyer.firstName = "Marek";
-        buyer.lastName = "Kupuje";
-        seller.pet = cat;
-        buyer.cash = 305300.0;
-        seller.cash = 9400.0;
-        seller.setSalary(12000.00);
-        seller.setSalary(5000.00);
-
-        System.out.println(seller);
-        System.out.println(buyer);
-        // Sprzedaz kota
-        cat.sell(seller, buyer, 400.0);
-
-        System.out.println(seller);
-        System.out.println(buyer);
-
-        // Sprzedaz czlowieka
-        seller.sell(seller, buyer, 50.0);
-
-        // Sprzedaz samochodu bez posiadania
-        car.sell(seller, buyer, 5000.0);
-
-        System.out.println(seller);
-        System.out.println(buyer);
-
-        //Sprzedaz samochodu z posiadaniem
-        seller.setCar(new Car("Maluch", "Fiat", LocalDate.of(1980, 4, 15),"red", 5000.00));
-
-        System.out.println(seller);
-        System.out.println(buyer);
-
-        seller.getCar().sell(seller, buyer,2000.0);
-
-        System.out.println(seller);
-        System.out.println(buyer);
     }
 }

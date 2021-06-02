@@ -1,20 +1,20 @@
-package com.company;
+package com.company.creatures;
 
-import java.io.File;
+import com.company.Human;
+import com.company.salleable;
 
-public class Animal implements salleable {
+public abstract class Animal implements Feedable, Edbile , salleable {
     final public String species;
-    private Double weight;
+    public Double weight;
     public String name;
-    File pic;
 
-    public Animal(String species, Double weight, String name){
+    public Animal(String species, String name, Double weight){
         this.species = species;
         this.weight = weight;
         this.name = name;
     }
 
-    void feed(){
+    public void feed(){
         if (weight > 0) {
             System.out.println("thx for food");
             this.weight += 1;
@@ -22,7 +22,13 @@ public class Animal implements salleable {
         else System.out.println("Your pet is dead");
     }
 
-    void takeForAWalk() {
+    @Override
+    public void feed(double foodWeight) {
+        System.out.println("thx for food");
+        this.weight += foodWeight;
+    }
+
+    public void takeForAWalk() {
         if (weight > 0) {
             System.out.println("thx for walk");
             this.weight--;
@@ -37,7 +43,6 @@ public class Animal implements salleable {
                 "species='" + species + '\'' +
                 ", weight=" + weight +
                 ", name='" + name + '\'' +
-                ", pic=" + pic +
                 '}';
     }
 
@@ -63,4 +68,8 @@ public class Animal implements salleable {
 
 
     }
+
+    public abstract boolean beEaten();
+
+    public abstract void feed(Double foodWeight);
 }
