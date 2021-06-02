@@ -2,6 +2,8 @@ package com.company;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -23,11 +25,11 @@ public class Main {
         me.pet.takeForAWalk();
         System.out.println(me.pet);
 
-        Car car = new Car("Maluch", "Fiat", "red", 5000.00);
-        Car bmw = new Car("X5", "BMW","black",450000.00);
-        Car bmw2 = new Car("X5", "BMW","black",450000.00);
+        Car car = new Car("Maluch", "Fiat", LocalDate.of(1980, 4, 15),"red", 5000.00);
+        Car bmw = new Car("X5", "BMW", LocalDate.of(2020, 1, 3),"black",450000.00);
+        Car bmw2 = new Car("X5", "BMW",LocalDate.of(2020, 1, 3),"black",450000.00);
 
-        Phone phone = new Phone("Huawei", "P10 Lite", 6.3, "Android");
+        Phone phone = new Phone("Huawei", "P10 Lite", LocalDate.of(2015, 2, 5),6.3, "Android");
 
         me.setSalary(13000.0);
         me.getSalary();
@@ -41,5 +43,8 @@ public class Main {
         System.out.println(bmw);
         System.out.println(bmw2);
         System.out.println(phone);
+
+        bmw.turnOn();
+        System.out.println(bmw);
     }
 }

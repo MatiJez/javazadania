@@ -1,14 +1,13 @@
 package com.company.devices;
 
-public class Car {
-    public final String model;
-    public final String producer;
+import java.time.LocalDate;
+
+public class Car extends Device {
     public String color;
     public Double value;
 
-    public Car(String model, String producer, String color, Double value) {
-        this.model = model;
-        this.producer = producer;
+    public Car(String model, String producer, LocalDate yearOfProduction, String color, Double value) {
+        super(producer, model, yearOfProduction);
         this.color = color;
         this.value = value;
     }
@@ -19,7 +18,13 @@ public class Car {
                 "model='" + model + '\'' +
                 ", producer='" + producer + '\'' +
                 ", color=" + color + '\'' +
-                ", value='" + value +
+                ", value='" + value + '\'' +
+                ", yearOfProduction='" + yearOfProduction +
                 '}';
+    }
+
+    @Override
+    public void turnOn(){
+        System.out.println("Odpalenie samochodu");
     }
 }

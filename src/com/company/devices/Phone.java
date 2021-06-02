@@ -1,14 +1,13 @@
 package com.company.devices;
 
-public class Phone {
-    final String producer;
-    final String model;
+import java.time.LocalDate;
+
+public class Phone extends Device {
     final Double screenSize;
     final String operatingSystem;
 
-    public Phone(String producer, String model, Double screenSize, String operatingSystem) {
-        this.producer = producer;
-        this.model = model;
+    public Phone(String producer, String model, LocalDate yearOfProduction, Double screenSize, String operatingSystem) {
+        super(producer, model, yearOfProduction);
         this.screenSize = screenSize;
         this.operatingSystem = operatingSystem;
     }
@@ -19,7 +18,13 @@ public class Phone {
                 "producer='" + producer + '\'' +
                 ", model='" + model + '\'' +
                 ", screenSize=" + screenSize + '\'' +
-                ", operatingSystem=" + operatingSystem +
+                ", operatingSystem=" + operatingSystem + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
                 '}';
+    }
+
+    @Override
+    public void turnOn(){
+        System.out.println("Włączenie telefonu");
     }
 }
