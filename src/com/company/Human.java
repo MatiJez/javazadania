@@ -13,7 +13,7 @@ public class Human {
     public Phone mobilePhone;
     private double salary;
     public Double cash;
-    public Car[] garage;
+    private Car[] garage;
     private int garageCount;
 
     public  Human(String firstName,String lastName){
@@ -23,9 +23,10 @@ public class Human {
         this.garage = new Car[1];
     }
 
-    public  Human(String firstName,String lastName,Pet pet,Phone phone,int garageCount){
+    public  Human(String firstName,String lastName,Pet pet,Phone phone,int garageCount, Double cash){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.cash = cash;
         this.pet = pet;
         this.mobilePhone = phone;
         this.garageCount = garageCount;
@@ -70,6 +71,7 @@ public class Human {
                 return;
             }
             double salary = getSalary();
+            car.addOwner(this);
             if (salary > car.value) {
                 System.out.println("Udało się kupić za gotówkę");
                 this.garage[id] = car;
@@ -102,6 +104,7 @@ public class Human {
     }
 
     public void addCar (Car newCar){
+        newCar.addOwner(this);
         for (int i = 0; i < this.garage.length; i++) {
             if (this.garage[i] == null) {
                 this.garage[i] = newCar;
@@ -143,12 +146,14 @@ public class Human {
         for (Car car : this.garage) System.out.println("    " + car);
     }
 
+    public String getFullName(){
+        return this.firstName+" "+lastName;
+    }
+
 
     public void sell(Human seller, Human buyer, Double price){
         System.out.println("Handel ludzmi jest niemozliwy!");
     }
-
-
 
 
 }

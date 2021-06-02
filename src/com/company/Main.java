@@ -25,6 +25,8 @@ public class Main {
         Car bmw2 = new Disel("X5", "BMW",2019,"black",450000.00);
 
         Phone huawei = new Phone("Huawei", "P10 Lite", 2015,6.3, "Android");
+        Human grazyna = new Human("Grazyna", "Kowalska");
+        grazyna.setSalary(5000.00);
 
 
         huawei.installAnApp("minecraft");
@@ -37,11 +39,16 @@ public class Main {
 
         me.setGarageCount(4);
         me.printCars();
-        me.garage[0] = bmw2;
-        me.garage[1] = car;
+        grazyna.printCars();
+
+        me.addCar(bmw);
+        me.addCar(car);
+
+        System.out.println(me.getCar(1).getOwners());
+        System.out.println(me.getCar(1).getOwnerCount());
+
         me.printCars();
-
-
+        grazyna.printCars();
 
     }
 }
