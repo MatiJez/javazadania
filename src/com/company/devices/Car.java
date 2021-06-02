@@ -1,6 +1,7 @@
 package com.company.devices;
 
 import java.time.LocalDate;
+import com.company.Human;
 
 public class Car extends Device {
     public String color;
@@ -26,5 +27,28 @@ public class Car extends Device {
     @Override
     public void turnOn(){
         System.out.println("Odpalenie samochodu");
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price){
+        if (seller.getCar() != this){
+            System.out.println("Nie możesz sprzedać kradzionego samochodu");
+            return;
+        }
+        if (buyer.cash < price){
+            System.out.println("Kupujący nie ma tyle pieniedzy!");
+            return;
+        }
+        if (seller == buyer){
+            System.out.println("ERROR: nie możesz sprzedawać samemu sobie");
+            return;
+        }
+        buyer.cash -=price;
+        seller.cash += price;
+        buyer.setCar(seller.getCar());
+        seller.setCar(null);
+        System.out.println("Sprzedales samochod za "+price);
+
+
     }
 }

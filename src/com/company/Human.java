@@ -4,12 +4,13 @@ import com.company.devices.Car;
 import com.company.devices.Phone;
 
 public class Human {
-    String firstName;
-    String lastName;
-    Animal pet;
-    Phone mobilePhone;
+    public String firstName;
+    public String lastName;
+    public Animal pet;
+    public Phone mobilePhone;
     private Car car;
     private double salary;
+    public Double cash;
 
     public double getSalary(){
         LocalDateTime time = LocalDateTime.now();
@@ -30,6 +31,11 @@ public class Human {
     }
 
     public void setCar(Car car) {
+        if (car == null) {
+            System.out.println("Usunięto samochod");
+            this.car = null;
+            return;
+        }
         if (salary > car.value){
             System.out.println("Udało się kupić za gotówkę");
             this.car = car;
@@ -38,11 +44,13 @@ public class Human {
             System.out.println("Udało się kupić na kredyt");
             this.car = car;
         }
-        else {
-            System.out.println("zapisz się na studia i znajdź nową robotę albo idź popodwyżkę");
-        }
-
+        else System.out.println("zapisz się na studia i znajdź nową robotę albo idź popodwyżkę");
     }
+
+    public void sell(Human seller, Human buyer, Double price){
+        System.out.println("Handel ludzmi jest niemozliwy!");
+    }
+
 
     @Override
     public String toString() {
@@ -52,6 +60,8 @@ public class Human {
                 ", pet=" + pet +
                 ", phone=" + mobilePhone +
                 ", salary=" + salary +
+                ", cash=" + cash +
+                ", car=" + car +
                 '}';
     }
 }

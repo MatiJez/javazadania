@@ -1,8 +1,9 @@
 package com.company.devices;
 
 import java.time.LocalDate;
+import com.company.salleable;
 
-public abstract class Device {
+public abstract class Device implements salleable {
     public String producer;
     public String model;
     public LocalDate yearOfProduction;
