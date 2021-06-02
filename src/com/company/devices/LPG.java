@@ -1,9 +1,8 @@
 package com.company.devices;
 
-import java.time.LocalDate;
 
 public class LPG extends Car{
-    public LPG(String model, String producer, LocalDate yearOfProduction, String color, Double value){
+    public LPG(String model, String producer, int yearOfProduction, String color, Double value){
         super( model,  producer, yearOfProduction, color,  value);
     }
 

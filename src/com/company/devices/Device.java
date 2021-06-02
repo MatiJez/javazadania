@@ -1,14 +1,13 @@
 package com.company.devices;
-
-import java.time.LocalDate;
 import com.company.salleable;
 
 public abstract class Device implements salleable {
     public String producer;
     public String model;
-    public LocalDate yearOfProduction;
+    public int yearOfProduction;
+    public String value;
 
-    public Device(String producer, String model, LocalDate yearOfProduction) {
+    public Device(String producer, String model, int yearOfProduction) {
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
