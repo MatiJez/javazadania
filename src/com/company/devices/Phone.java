@@ -3,10 +3,13 @@ import com.company.Human;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.*;
 
 public class Phone extends Device {
     final Double screenSize;
     final String operatingSystem;
+    public HashSet<Application> applications;
+    public Human owner;
 
     static final String DEFAULT_PROTOCOL = "https";
     static final String DEFAULT_HOST = "google.com";
@@ -17,33 +20,60 @@ public class Phone extends Device {
         super(producer, model, yearOfProduction);
         this.screenSize = screenSize;
         this.operatingSystem = operatingSystem;
+        this.applications = new HashSet<>();
+        this.owner = null;
     }
 
-    public void installAnApp(URL appURL) {
-        System.out.println("InstalledApp("+appURL.getFile()+")");
-    }
-
-    public void installAnApp(List<String> appNames) {
-        for (String appName : appNames){
-            this.installAnApp(appName);
+    public void printAllInstalledApps(){
+        for (Application app : this.applications){
+            System.out.println(app.name);
         }
     }
 
-    public void installAnApp(String appName){
-        this.installAnApp(appName,DEFAULT_APP_VERSION,DEFAULT_HOST,DEFAULT_PROTOCOL);
-    }
-
-    public void installAnApp(String appName,String version){
-        this.installAnApp(appName,version,DEFAULT_HOST,DEFAULT_PROTOCOL);
-    }
-
-    public void installAnApp(String appName,String version,String host,String protocol){
-        try {
-            URL url = new URL(protocol,host,appName+" "+version);
-            this.installAnApp(url);
-        }catch (MalformedURLException e){
-            e.printStackTrace();
+    public void printAllInstalledFreeApps(){
+        for (Application app : this.applications){
+            if (app.price ==0){
+                System.out.println(app.name);
+            }
         }
+    }
+
+    public void printAllInstalledAppsSortAlfa(){
+        List<String> applist = new ArrayList<>();
+
+        for (Application app : this.applications){
+            applist.add(app.name);
+        }
+        Collections.sort(applist);
+        for (String appname : applist){
+            System.out.println(appname);
+        }
+    }
+
+    public void printAllInstalledAppsSortPrice(){
+        Application[] apps = this.applications.toArray(new Application[this.applications.size()]);
+        Arrays.sort(apps, (a,b) -> a.price - b.price);
+        for (Application app : apps){
+            System.out.println(app);
+        }
+    }
+
+    public void installAnApp(Application app)  throws Exception{
+        if (this.owner.cash  < app.price) throw new Exception("not enough money");
+        this.applications.add(app);
+        this.owner.cash -= app.price;
+    }
+
+    public boolean isAppInstalled(Application app){
+        return isAppInstalled(app.name);
+    }
+
+    public boolean isAppInstalled(String appName) {
+        for (Application app : this.applications) {
+            if (app.name.equals(appName))
+                return true;
+        }
+        return false;
     }
 
 
@@ -65,7 +95,7 @@ public class Phone extends Device {
 
     @Override
     public void sell(Human seller, Human buyer, Double price){
-        if (seller.mobilePhone != this){
+        if (seller.getMobilePhone() != this){
             System.out.println("Nie możesz sprzedawać kradzionych telefonów!");
             return;
         }
@@ -79,8 +109,8 @@ public class Phone extends Device {
         }
         buyer.cash -=price;
         seller.cash += price;
-        buyer.mobilePhone = seller.mobilePhone;
-        seller.mobilePhone = null;
+        buyer.setMobilePhone(seller.getMobilePhone());
+        seller.setMobilePhone(null);
         System.out.println("Udało Ci się sprzedać telefon za " +price);
 
 

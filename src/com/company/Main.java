@@ -17,6 +17,9 @@ public class Main {
         me.pet = new Pet("Canis","Grubas", 15.0);
         Animal cat = new Pet("Canis","Ulaniec", 25.0);
         Animal chicken = new FarmAnimal("Kurczakowy","KFC", 54.00);
+        me.setMobilePhone(new Phone("LG","140",2010, 5.6,"Android"));
+        me.cash = 5500.0;
+
 
         System.out.println(me.pet);
 
@@ -27,11 +30,6 @@ public class Main {
         Phone huawei = new Phone("Huawei", "P10 Lite", 2015,6.3, "Android");
         Human grazyna = new Human("Grazyna", "Kowalska");
         grazyna.setSalary(5000.00);
-
-
-        huawei.installAnApp("minecraft");
-        huawei.installAnApp("Skype", "12.5");
-        huawei.installAnApp("fortnite", "5.321","Fortnite.pl","https");
 
         bmw.refuel(23.5);
         car.refuel(5.0);
@@ -50,5 +48,18 @@ public class Main {
         me.printCars();
         grazyna.printCars();
 
+
+
+        me.getMobilePhone().installAnApp(new Application("minecraft","1.12.2", 60));
+        me.getMobilePhone().installAnApp(new Application("fortnite","12", 15));
+        me.getMobilePhone().installAnApp(new Application("gta","5", 230));
+
+        me.getMobilePhone().printAllInstalledApps();
+        System.out.println("-----Posortowane----");
+        me.getMobilePhone().printAllInstalledAppsSortPrice();
+
+        System.out.println(me.getMobilePhone().isAppInstalled("minecraft"));
+        System.out.println(me.getMobilePhone().isAppInstalled("tibia"));
     }
-}
+
+    }

@@ -10,7 +10,7 @@ public class Human {
     public String firstName;
     public String lastName;
     public Pet pet;
-    public Phone mobilePhone;
+    private Phone mobilePhone;
     private double salary;
     public Double cash;
     private Car[] garage;
@@ -32,6 +32,17 @@ public class Human {
         this.garageCount = garageCount;
         this.garage = new Car[garageCount];
     }
+
+    public void setMobilePhone(Phone phone){
+        this.mobilePhone = phone;
+        if (this.mobilePhone == null) return;
+        this.mobilePhone.owner = this;
+    }
+
+    public Phone getMobilePhone(){
+        return this.mobilePhone;
+    }
+
 
     public void setGarageCount(int garageCount){
         this.garageCount = garageCount;
